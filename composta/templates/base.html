@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Composta{% endblock %} | Tierra Viva</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Configuración de Tailwind: agregamos una fuente para títulos -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Fraunces', 'serif'],
+                    },
+                },
+            },
+        }
+    </script>
+
+    <!-- Tipografías: Inter para el texto y Fraunces (con estilo orgánico) para los títulos -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<!-- Fondo color crema (stone-50) para que se sienta natural y no un blanco frío -->
+<body class="bg-stone-50 antialiased text-stone-800">
+
+<!-- Navbar: Sticky (se queda arriba) + Glassmorphism (transparencia y desenfoque) -->
+<nav class="sticky top-0 z-50 bg-stone-950/80 backdrop-blur-lg border-b border-white/10 shadow-sm">
+  <div class="container mx-auto px-6 py-4 flex flex-wrap gap-3 justify-between items-center">
+
+    <!-- Logo: Texto con gradiente verde-ámbar, colores de la tierra -->
+    <a class="font-display text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-lime-300 via-emerald-300 to-amber-300 tracking-tight hover:opacity-80 transition-opacity" href="{% url 'home' %}">
+        Tierra Viva
+    </a>
+
+    <!-- Links tipo píldora: el link de la página actual queda resaltado -->
+    {% with actual=request.resolver_match.url_name %}
+    <div class="flex flex-wrap items-center gap-1">
+      <a href="{% url 'home' %}"
+         class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 {% if actual == 'home' %}bg-white/15 text-white{% else %}text-stone-300 hover:text-white hover:bg-white/10{% endif %}">
+           ¿Qué es?
+      </a>
+      <a href="{% url 'como_hacer' %}"
+         class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 {% if actual == 'como_hacer' %}bg-white/15 text-white{% else %}text-stone-300 hover:text-white hover:bg-white/10{% endif %}">
+           Cómo hacerla
+      </a>
+      <a href="{% url 'materiales' %}"
+         class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 {% if actual == 'materiales' %}bg-white/15 text-white{% else %}text-stone-300 hover:text-white hover:bg-white/10{% endif %}">
+           Materiales
+      </a>
+      <a href="{% url 'beneficios' %}"
+         class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 {% if actual == 'beneficios' %}bg-white/15 text-white{% else %}text-stone-300 hover:text-white hover:bg-white/10{% endif %}">
+           Beneficios
+      </a>
+      <!-- Botón destacado: Gradiente lima-esmeralda con sombra de color, se eleva al pasar el mouse -->
+      <a href="{% url 'preguntas' %}"
+         class="bg-gradient-to-r from-lime-400 to-emerald-500 hover:from-lime-500 hover:to-emerald-600 text-stone-950 px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-emerald-500/25 transition-all duration-300 hover:-translate-y-0.5">
+           Preguntas
+      </a>
+    </div>
+    {% endwith %}
+  </div>
+</nav>
+
+<!-- Bloque para la portada a todo lo ancho (fuera del contenedor) -->
+{% block hero %}{% endblock %}
+
+<!-- Usar la etiqueta <main> es mejor semánticamente -->
+<main class="container mx-auto px-6 py-14 md:py-20">
+    {% block content %}{% endblock %}
+</main>
+
+<!-- Footer oscuro, color tierra -->
+<footer class="bg-stone-950 text-stone-400">
+  <div class="container mx-auto px-6 py-12 grid gap-8 md:grid-cols-3">
+    <div>
+      <span class="font-display text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-lime-300 via-emerald-300 to-amber-300">Tierra Viva</span>
+      <p class="mt-3 text-sm leading-relaxed">Una guía sencilla para convertir los restos de tu cocina en abono para tus plantas.</p>
+    </div>
+    <div>
+      <h4 class="text-white font-semibold mb-3">Secciones</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a href="{% url 'home' %}" class="hover:text-lime-300 transition-colors">¿Qué es una composta?</a></li>
+        <li><a href="{% url 'como_hacer' %}" class="hover:text-lime-300 transition-colors">Cómo hacerla</a></li>
+        <li><a href="{% url 'materiales' %}" class="hover:text-lime-300 transition-colors">Materiales</a></li>
+        <li><a href="{% url 'beneficios' %}" class="hover:text-lime-300 transition-colors">Beneficios</a></li>
+        <li><a href="{% url 'preguntas' %}" class="hover:text-lime-300 transition-colors">Preguntas frecuentes</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-white font-semibold mb-3">Fotografías</h4>
+      <p class="text-sm leading-relaxed">Imágenes de Wikimedia Commons con licencias libres.</p>
+      <a href="{% url 'creditos' %}" class="inline-block mt-3 text-sm font-semibold text-lime-300 hover:text-lime-200">Ver créditos &rarr;</a>
+    </div>
+  </div>
+  <div class="border-t border-white/10 py-5 text-center text-xs text-stone-500">
+    Página informativa hecha con Django
+  </div>
+</footer>
+
+</body>
+</html>
