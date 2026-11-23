@@ -1,0 +1,103 @@
+{% extends 'composta/base.html' %}
+{% load static %}
+
+{% block title %}Materiales{% endblock %}
+
+{% block hero %}
+    {% include 'composta/partials/page_hero.html' with etiqueta='Materiales' titulo='¿Qué se puede echar a la composta?' texto='No todos los residuos sirven. Usar los materiales correctos evita malos olores, moscas y plagas.' imagen='composta/img/cascaras.jpg' %}
+{% endblock %}
+
+{% block content %}
+
+<!-- =========================
+     SÍ se puede: verdes y cafés (tarjetas con foto de encabezado)
+     ========================= -->
+<section>
+    <div class="flex items-center gap-4">
+        <span class="w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-r from-lime-400 to-emerald-500 text-stone-950 shadow-lg shadow-emerald-500/30">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+        </span>
+        <h2 class="font-display text-4xl md:text-5xl font-extrabold text-stone-900">Sí se puede</h2>
+    </div>
+    <p class="mt-4 text-lg text-stone-600 max-w-2xl">Combina siempre los dos tipos: por cada puño de material verde, agrega dos de material café.</p>
+
+    <div class="mt-10 grid md:grid-cols-2 gap-8">
+
+        <!-- Verdes -->
+        <div class="bg-white rounded-3xl border border-stone-100 shadow-xl shadow-stone-200/50 overflow-hidden">
+            <div class="relative h-56">
+                <img src="{% static 'composta/img/cascaras.jpg' %}" alt="Cáscaras de fruta" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-stone-950/80 to-transparent"></div>
+                <div class="absolute bottom-5 left-6">
+                    <span class="px-3 py-1 bg-lime-400 text-stone-950 text-xs font-bold uppercase tracking-wider rounded-full">Húmedos · Nitrógeno</span>
+                    <h3 class="font-display mt-2 text-3xl font-bold text-white">Materiales verdes</h3>
+                </div>
+            </div>
+            <ul class="p-6 divide-y divide-stone-100">
+                {% for material in verdes %}
+                <li class="py-3 flex items-center gap-3 text-stone-700">
+                    <span class="w-2.5 h-2.5 rounded-full bg-lime-500"></span>{{ material }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Cafés -->
+        <div class="bg-white rounded-3xl border border-stone-100 shadow-xl shadow-stone-200/50 overflow-hidden">
+            <div class="relative h-56">
+                <img src="{% static 'composta/img/hojas_secas.jpg' %}" alt="Hojas secas" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-stone-950/80 to-transparent"></div>
+                <div class="absolute bottom-5 left-6">
+                    <span class="px-3 py-1 bg-amber-400 text-stone-950 text-xs font-bold uppercase tracking-wider rounded-full">Secos · Carbono</span>
+                    <h3 class="font-display mt-2 text-3xl font-bold text-white">Materiales cafés</h3>
+                </div>
+            </div>
+            <ul class="p-6 divide-y divide-stone-100">
+                {% for material in cafes %}
+                <li class="py-3 flex items-center gap-3 text-stone-700">
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>{{ material }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- =========================
+     NO se puede (tarjetas con acento rojo)
+     ========================= -->
+<section class="mt-28">
+    <div class="flex items-center gap-4">
+        <span class="w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-r from-rose-500 to-red-600 text-white shadow-lg shadow-red-500/30">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </span>
+        <h2 class="font-display text-4xl md:text-5xl font-extrabold text-stone-900">Nunca lo eches</h2>
+    </div>
+    <p class="mt-4 text-lg text-stone-600 max-w-2xl">Estos residuos arruinan la composta, atraen plagas o simplemente no se descomponen.</p>
+
+    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {% for material in prohibidos %}
+        <div class="bg-white rounded-3xl border border-stone-100 border-t-4 border-t-red-500 p-6 shadow-lg shadow-stone-200/50 hover:-translate-y-1 hover:shadow-xl hover:shadow-red-500/10 transition-all duration-300">
+            <h3 class="font-bold text-lg text-stone-900">{{ material.nombre }}</h3>
+            <p class="mt-2 text-stone-500 leading-relaxed">{{ material.razon }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- =========================
+     Regla fácil
+     ========================= -->
+<section class="mt-28 relative overflow-hidden rounded-[2rem] shadow-2xl shadow-stone-900/20">
+    <img src="{% static 'composta/img/residuos_cocina.jpg' %}" alt="" class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-stone-950/80"></div>
+    <div class="relative p-10 md:p-16 text-center max-w-3xl mx-auto">
+        <span class="text-lime-300 text-sm font-bold uppercase tracking-widest">Regla fácil para recordar</span>
+        <p class="font-display mt-4 text-3xl md:text-4xl font-bold text-white leading-snug">
+            Si viene de una <span class="text-lime-300">planta</span> y no tiene grasa, a la composta.
+            Si viene de un <span class="text-rose-400">animal</span> o es artificial, mejor no.
+        </p>
+    </div>
+</section>
+
+{% endblock %}
