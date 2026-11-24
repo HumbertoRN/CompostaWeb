@@ -9,7 +9,6 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Configuración de Tailwind: agregamos una fuente para títulos -->
     <script>
         tailwind.config = {
             theme: {
@@ -28,19 +27,15 @@
         body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<!-- Fondo color crema (stone-50) para que se sienta natural y no un blanco frío -->
 <body class="bg-stone-50 antialiased text-stone-800">
 
-<!-- Navbar: Sticky (se queda arriba) + Glassmorphism (transparencia y desenfoque) -->
 <nav class="sticky top-0 z-50 bg-stone-950/80 backdrop-blur-lg border-b border-white/10 shadow-sm">
   <div class="container mx-auto px-6 py-4 flex flex-wrap gap-3 justify-between items-center">
 
-    <!-- Logo: Texto con gradiente verde-ámbar, colores de la tierra -->
     <a class="font-display text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-lime-300 via-emerald-300 to-amber-300 tracking-tight hover:opacity-80 transition-opacity" href="{% url 'home' %}">
         Tierra Viva
     </a>
 
-    <!-- Links tipo píldora: el link de la página actual queda resaltado -->
     {% with actual=request.resolver_match.url_name %}
     <div class="flex flex-wrap items-center gap-1">
       <a href="{% url 'home' %}"
@@ -59,7 +54,6 @@
          class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 {% if actual == 'beneficios' %}bg-white/15 text-white{% else %}text-stone-300 hover:text-white hover:bg-white/10{% endif %}">
            Beneficios
       </a>
-      <!-- Botón destacado: Gradiente lima-esmeralda con sombra de color, se eleva al pasar el mouse -->
       <a href="{% url 'preguntas' %}"
          class="bg-gradient-to-r from-lime-400 to-emerald-500 hover:from-lime-500 hover:to-emerald-600 text-stone-950 px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-emerald-500/25 transition-all duration-300 hover:-translate-y-0.5">
            Preguntas
@@ -69,15 +63,12 @@
   </div>
 </nav>
 
-<!-- Bloque para la portada a todo lo ancho (fuera del contenedor) -->
 {% block hero %}{% endblock %}
 
-<!-- Usar la etiqueta <main> es mejor semánticamente -->
 <main class="container mx-auto px-6 py-14 md:py-20">
     {% block content %}{% endblock %}
 </main>
 
-<!-- Footer oscuro, color tierra -->
 <footer class="bg-stone-950 text-stone-400">
   <div class="container mx-auto px-6 py-12 grid gap-8 md:grid-cols-3">
     <div>

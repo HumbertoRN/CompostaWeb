@@ -1,12 +1,10 @@
 from django.shortcuts import render
 
 
-# =========================
-# 🏠 Inicio: ¿Qué es una composta?
-# =========================
+
 def home(request):
 
-    # Los 4 ingredientes que necesita una composta
+  
     ingredientes = [
         {
             'nombre': 'Materiales verdes',
@@ -34,7 +32,6 @@ def home(request):
         },
     ]
 
-    # Los seres vivos que hacen el trabajo
     trabajadores = [
         {
             'nombre': 'Lombrices',
@@ -53,7 +50,6 @@ def home(request):
         },
     ]
 
-    # Datos rápidos para la franja de números
     datos = [
         {'numero': '50%', 'texto': 'de la basura de una casa son restos orgánicos'},
         {'numero': '2-6', 'texto': 'meses tarda en estar lista'},
@@ -67,9 +63,7 @@ def home(request):
     })
 
 
-# =========================
-# 🪴 Cómo hacer composta paso a paso
-# =========================
+
 def como_hacer(request):
 
     pasos = [
@@ -123,9 +117,6 @@ def como_hacer(request):
     })
 
 
-# =========================
-# ✅ Materiales: qué sí y qué no
-# =========================
 def materiales(request):
 
     verdes = [
@@ -162,9 +153,7 @@ def materiales(request):
     })
 
 
-# =========================
-# 🌎 Beneficios
-# =========================
+
 def beneficios(request):
 
     beneficios = [
@@ -207,15 +196,11 @@ def beneficios(request):
     })
 
 
-# =========================
-# ❓ Preguntas frecuentes
-# =========================
+
 def preguntas(request):
     return render(request, 'composta/preguntas.html')
 
 
-# =========================
-# 📷 Créditos de las fotografías
-# =========================
+
 def creditos(request):
     return render(request, 'composta/creditos.html')
