@@ -1,0 +1,56 @@
+{% extends 'composta/base.html' %}
+{% load static %}
+
+{% block title %}Cómo hacer composta{% endblock %}
+
+{% block hero %}
+    {% include 'composta/partials/page_hero.html' with etiqueta='Paso a paso' titulo='Cómo hacer tu propia composta' texto='No necesitas mucho espacio ni herramientas especiales. Sigue estos 7 pasos y en unos meses tendrás abono para tus plantas.' imagen='composta/img/contenedores.jpg' %}
+{% endblock %}
+
+{% block content %}
+
+<section class="space-y-16 md:space-y-24">
+    {% for paso in pasos %}
+    <div class="grid md:grid-cols-2 gap-8 md:gap-14 items-center">
+
+        <div class="group relative overflow-hidden rounded-[2rem] shadow-xl shadow-stone-300/50 {% if forloop.counter|divisibleby:2 %}md:order-2{% endif %}">
+            <img src="{% static paso.imagen %}" alt="{{ paso.titulo }}" class="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+        </div>
+
+        <div>
+            <span class="font-display text-7xl md:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-lime-400 to-emerald-600 leading-none">
+                {{ forloop.counter|stringformat:"02d" }}
+            </span>
+            <h2 class="font-display mt-4 text-3xl md:text-4xl font-extrabold text-stone-900">{{ paso.titulo }}</h2>
+            <p class="mt-4 text-lg text-stone-600 leading-relaxed">{{ paso.descripcion }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+
+<section class="mt-28 bg-stone-950 rounded-[2rem] overflow-hidden grid lg:grid-cols-2 shadow-2xl shadow-stone-900/20">
+    <img src="{% static 'composta/img/lombrices.jpg' %}" alt="Composta lista con lombrices" class="w-full h-full min-h-[18rem] object-cover">
+    <div class="p-10 md:p-14">
+        <span class="text-lime-300 text-sm font-bold uppercase tracking-widest">La cosecha</span>
+        <h2 class="font-display mt-3 text-4xl font-extrabold text-white">¿Cómo sé que ya está lista?</h2>
+
+        <ul class="mt-8 space-y-4">
+            {% for senal in senales_lista %}
+            <li class="flex items-start gap-4">
+                <!-- Icono de check -->
+                <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-gradient-to-r from-lime-400 to-emerald-500 text-stone-950">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span class="text-lg text-stone-200 pt-0.5">{{ senal }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'materiales' %}" class="inline-block mt-10 bg-white hover:bg-lime-100 text-stone-950 font-bold py-3.5 px-8 rounded-full transition-all hover:-translate-y-0.5">
+            ¿Qué materiales puedo usar? &rarr;
+        </a>
+    </div>
+</section>
+
+{% endblock %}

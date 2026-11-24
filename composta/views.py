@@ -252,4 +252,26 @@ def preguntas(request):
 # 📷 Créditos de las fotografías
 # =========================
 def creditos(request):
-    return render(request, 'composta/creditos.html')
+
+    # Todas las fotos son de Wikimedia Commons con licencia libre
+    fotos = [
+        {'archivo': 'hero.jpg', 'autor': 'SuSanA Secretariat', 'licencia': 'CC BY 2.0', 'url': 'https://commons.wikimedia.org/wiki/File:Compost_with_earthworms_(8261570159).jpg'},
+        {'archivo': 'contenedores.jpg', 'autor': 'Andy Li', 'licencia': 'CC0', 'url': 'https://commons.wikimedia.org/wiki/File:Compost_bins_in_Brighthelm_Garden_2023-06-16.jpg'},
+        {'archivo': 'bote.jpg', 'autor': 'FotoFree', 'licencia': 'CC BY-SA 4.0', 'url': 'https://commons.wikimedia.org/wiki/File:Garden_compost_bin.jpg'},
+        {'archivo': 'huerto_comunitario.jpg', 'autor': 'Michal Klajban', 'licencia': 'CC BY-SA 4.0', 'url': 'https://commons.wikimedia.org/wiki/File:Richmond_Community_Garden_-_compost_bins,_Richmond,_Christchurch,_New_Zealand.jpg'},
+        {'archivo': 'cascaras.jpg', 'autor': 'Anna.Massini', 'licencia': 'CC BY-SA 4.0', 'url': 'https://commons.wikimedia.org/wiki/File:Nothing_will_be_wasted!_Kitchen_scraps_for_compost!.jpg'},
+        {'archivo': 'residuos_cocina.jpg', 'autor': 'Tim Jewett', 'licencia': 'CC BY-SA 2.5', 'url': 'https://commons.wikimedia.org/wiki/File:Food_Scraps_and_Yard_Debris_Collection_in_Portland_2010_by_Tim_Jewett.JPG'},
+        {'archivo': 'hojas_secas.jpg', 'autor': 'Florian Prischl', 'licencia': 'CC BY-SA 3.0', 'url': 'https://commons.wikimedia.org/wiki/File:Autumn_leaves_in_Vienna.jpg'},
+        {'archivo': 'lombrices.jpg', 'autor': 'Wilfredor', 'licencia': 'CC0', 'url': 'https://commons.wikimedia.org/wiki/File:Earthworms_in_a_vermicompost_tray.jpg'},
+        {'archivo': 'composta_lista.jpg', 'autor': 'Ckgurney', 'licencia': 'CC BY-SA 3.0', 'url': 'https://commons.wikimedia.org/wiki/File:Finished_Municipal_Compost_for_Resale_at_Recology%27s_Facility.jpg'},
+        {'archivo': 'problema.jpg', 'autor': 'Quadell', 'licencia': 'CC BY 3.0', 'url': 'https://commons.wikimedia.org/wiki/File:Worm_composting_2.jpg'},
+        {'archivo': 'hongos.jpg', 'autor': 'peganum from Small Dole, England', 'licencia': 'CC BY-SA 2.0', 'url': 'https://commons.wikimedia.org/wiki/File:Bird_nest_fungi_-_Flickr_-_peganum.jpg'},
+        {'archivo': 'lombrices_composta.jpg', 'autor': 'SuSanA Secretariat', 'licencia': 'CC BY 2.0', 'url': 'https://commons.wikimedia.org/wiki/File:Compost_with_earthworms_(8262637896).jpg'},
+        {'archivo': 'semillero.jpg', 'autor': 'Ray Nimu', 'licencia': 'CC BY-SA 4.0', 'url': 'https://commons.wikimedia.org/wiki/File:Vegetable_Seedlings.jpg'},
+        {'archivo': 'plantulas.jpg', 'autor': 'USDAgov', 'licencia': 'Dominio público', 'url': 'https://commons.wikimedia.org/wiki/File:People%27s_Garden_Celebrates_150th_Annivarsary_of_USDA_(20120515-OC-LSC-0513).jpg'},
+        {'archivo': 'huerto.jpg', 'autor': 'USDAgov', 'licencia': 'Dominio público', 'url': 'https://commons.wikimedia.org/wiki/File:The_People%27s_Garden_(20221021-FPAC-LSC-0024).jpg'},
+    ]
+
+    return render(request, 'composta/creditos.html', {
+        'fotos': fotos,
+    })

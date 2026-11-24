@@ -9,9 +9,7 @@
 
 {% block content %}
 
-<!-- =========================
-     Tarjetas de beneficios (foto + texto)
-     ========================= -->
+
 <section class="grid md:grid-cols-2 gap-8">
     {% for beneficio in beneficios %}
     <div class="group flex flex-col sm:flex-row bg-white rounded-3xl border border-stone-100 shadow-xl shadow-stone-200/50 overflow-hidden hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-300 ease-out">
@@ -29,9 +27,7 @@
     {% endfor %}
 </section>
 
-<!-- =========================
-     ¿Para qué la uso? (lista sobre fondo oscuro con foto)
-     ========================= -->
+
 <section class="mt-28 grid lg:grid-cols-2 bg-stone-950 rounded-[2rem] overflow-hidden shadow-2xl shadow-stone-900/20">
     <div class="p-10 md:p-14 order-2 lg:order-1">
         <span class="text-lime-300 text-sm font-bold uppercase tracking-widest">Ya la tengo, ¿y ahora?</span>
