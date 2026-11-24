@@ -166,7 +166,45 @@ def materiales(request):
 # 🌎 Beneficios
 # =========================
 def beneficios(request):
-    return render(request, 'composta/beneficios.html')
+
+    beneficios = [
+        {
+            'titulo': 'Plantas más sanas',
+            'etiqueta': 'Plantas',
+            'descripcion': 'Les da nutrientes de forma natural, las hace crecer más fuertes y ayuda a prevenir enfermedades.',
+            'imagen': 'composta/img/plantulas.jpg',
+        },
+        {
+            'titulo': 'Un suelo vivo',
+            'etiqueta': 'Suelo',
+            'descripcion': 'Hace la tierra más suelta, ayuda a que guarde mejor el agua y atrae lombrices y organismos útiles.',
+            'imagen': 'composta/img/semillero.jpg',
+        },
+        {
+            'titulo': 'Menos basura',
+            'etiqueta': 'Planeta',
+            'descripcion': 'Los restos orgánicos dejan de ir al basurero, donde producen metano, un gas que calienta el planeta.',
+            'imagen': 'composta/img/contenedores.jpg',
+        },
+        {
+            'titulo': 'Ahorro en casa',
+            'etiqueta': 'Casa',
+            'descripcion': 'Ya no necesitas comprar abono ni tierra para tus macetas, y tu bote de basura se llena más despacio.',
+            'imagen': 'composta/img/huerto.jpg',
+        },
+    ]
+
+    usos = [
+        'Mezclarla con la tierra de tus macetas',
+        'Esparcirla sobre el jardín o el pasto',
+        'Preparar la tierra de un huerto',
+        'Ponerla alrededor de los árboles',
+    ]
+
+    return render(request, 'composta/beneficios.html', {
+        'beneficios': beneficios,
+        'usos': usos,
+    })
 
 
 # =========================
