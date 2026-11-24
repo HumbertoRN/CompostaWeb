@@ -211,7 +211,41 @@ def beneficios(request):
 # ❓ Preguntas frecuentes
 # =========================
 def preguntas(request):
-    return render(request, 'composta/preguntas.html')
+
+    preguntas = [
+        {
+            'pregunta': 'Mi composta huele mal, ¿qué hago?',
+            'respuesta': 'Casi siempre tiene demasiada agua o demasiado material verde y le falta aire. Agrega hojas secas o cartón y voltéala bien.',
+        },
+        {
+            'pregunta': 'Hay muchas moscas',
+            'respuesta': 'Pasa cuando la comida queda descubierta. Entierra los restos en el centro y tápalos siempre con una capa de material seco.',
+        },
+        {
+            'pregunta': 'No se descompone, sigue igual que hace semanas',
+            'respuesta': 'Seguramente está muy seca o los trozos son muy grandes. Riégala un poco, agrega material verde y corta los residuos más pequeños.',
+        },
+        {
+            'pregunta': '¿Es normal que esté caliente?',
+            'respuesta': 'Sí. El calor significa que los microorganismos están trabajando. Puede llegar a 60 °C, lo que elimina semillas de maleza y gérmenes.',
+        },
+        {
+            'pregunta': '¿Atrae ratas o cucarachas?',
+            'respuesta': 'Solo si echas carne, lácteos o comida con grasa. Si usas solo restos de plantas y los cubres bien, no tendrás ese problema.',
+        },
+        {
+            'pregunta': '¿Puedo hacer composta en un departamento?',
+            'respuesta': 'Sí. Usa un bote pequeño con tapa en el balcón o haz vermicomposta: una caja con lombrices rojas que no huele mal.',
+        },
+        {
+            'pregunta': '¿Cuánto tiempo tarda?',
+            'respuesta': 'Entre 2 y 6 meses, según el clima, los materiales y qué tan seguido la voltees. En clima cálido es más rápida.',
+        },
+    ]
+
+    return render(request, 'composta/preguntas.html', {
+        'preguntas': preguntas,
+    })
 
 
 # =========================
